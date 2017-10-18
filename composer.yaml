@@ -1,0 +1,42 @@
+---
+type: library
+name: zurborg/system-locales
+
+description: Wrapper for your system locales
+homepage: https://github.com/zurborg/libsystem-locales-php
+license: ISC
+keywords:
+  - locale
+
+authors:
+  - name: David Zurborg
+    email: zurborg@cpan.org
+    homepage: https://zurborg.github.io/
+
+require:
+  php: '>=7'
+  zurborg/pirate-hooray: '~1.7'
+
+require-dev:
+  phpunit/phpunit: '~5'
+  squizlabs/php_codesniffer: '~2'
+
+minimum-stability: stable
+
+autoload:
+  psr-4:
+    System\: src/
+
+archive:
+  exclude:
+    - '.*'
+    - '*~'
+    - vendor/
+    - Makefile
+    - composer.lock
+    - composer.phar
+    - composer.yaml
+
+scripts:
+  post-update-cmd:
+    - 'System\Locales::postUpdate'

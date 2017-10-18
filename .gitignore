@@ -1,0 +1,9 @@
+.*
+!.git*
+!.travis.yml
+*~
+*.out
+composer.phar
+composer.lock
+vendor
+test.php

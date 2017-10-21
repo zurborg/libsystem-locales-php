@@ -178,6 +178,7 @@ class Locales
      * Set a locale setting
      * @param int|string $category integer (from `LC_*` constant) or a category name
      * @param $value
+     * @see self::CATEGORIES
      */
     public static function set($category, $value)
     {
@@ -193,7 +194,7 @@ class Locales
      * The locale settings will be resetted even in case of an exception
      * @param $locale
      * @param callable $function
-     * @return mixed
+     * @return mixed return value of $function
      */
     public static function wrap($locale, callable $function)
     {

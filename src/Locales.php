@@ -192,7 +192,7 @@ class Locales
     /**
      * Encapsulate a codeblock with locale settings valid only for this call
      * The locale settings will be resetted even in case of an exception
-     * @param $locale
+     * @param string|array $locale
      * @param callable $function
      * @return mixed return value of $function
      */
@@ -200,15 +200,14 @@ class Locales
     {
         self::initialize();
         $safe = [];
+        if (!is_array($locale)) {
+            $locale = ['all' => $locale];
+        }
         try {
-            if (is_array($locale)) {
-                foreach ($locale as $category => $value) {
-                    $orig = self::get($category);
-                    self::set($category, $value);
-                    $safe[$category] = $orig;
-                }
-            } else {
-                self::set('all', $locale);
+            foreach ($locale as $category => $value) {
+                $orig = self::get($category);
+                self::set($category, $value);
+                $safe[$category] = $orig;
             }
             return $function();
         } finally {
